@@ -5,7 +5,7 @@
 ============================================================ */
 
 // Environment Detection & Configuration
-const ishttps://kkr-fan-hub.onrender.com = window.location.hostname === 'https://kkr-fan-hub.onrender.com' || window.location.hostname === '127.0.0.1';
+const ishttps://kkr-fan-hub.onrender.com = window.location.hostname === 'https://kkr-fan-hub.onrender.com' || window.location.hostname === 'kkr-fan-hub.onrender.com';
 const currentEnv = ishttps://kkr-fan-hub.onrender.com ? 'development' : 'production';
 
 const ENV = {

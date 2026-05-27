@@ -11,7 +11,7 @@ from utils.websocket_manager import manager
 from utils.logger import logger
 
 # Retrieve allowed CORS origins dynamically from env variables
-allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "http://https://kkr-fan-hub.onrender.com:3000,http://127.0.0.1:3000")
+allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "http://https://kkr-fan-hub.onrender.com:3000,http://kkr-fan-hub.onrender.com:3000")
 allowed_origins = [origin.strip() for origin in allowed_origins_str.split(",") if origin.strip()]
 
 # Add FRONTEND_URL dynamically to allowed origins for production convenience
