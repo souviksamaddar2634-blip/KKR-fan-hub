@@ -4,9 +4,9 @@ from typing import Any, Dict, Optional
 
 fromdatabase import get_db
 fromschemas.user import UserCreate
-fromutils.security import get_password_hash
-fromutils.exceptions import DuplicateEmailException, DuplicateUsernameException, DatabaseOperationError
-fromutils.logger import logger
+from utils.security import get_password_hash
+from utils.exceptions import DuplicateEmailException, DuplicateUsernameException, DatabaseOperationError
+from utils.logger import logger
 
 def get_user_by_id(user_id: str) -> Optional[Dict[str, Any]]:
     """Retrieve a user from MongoDB by their ObjectId or raw string ID (fallback)."""

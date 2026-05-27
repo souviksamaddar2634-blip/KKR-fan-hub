@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from typing import List, Dict, Optional
 
-fromutils.helpers import read_json
+from utils.helpers import read_json
 fromschemas.admin import PlayerResponse
 fromschemas.players import StatEntry
 fromservices import admin_service

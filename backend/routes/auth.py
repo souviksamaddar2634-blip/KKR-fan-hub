@@ -4,9 +4,9 @@ from typing import Dict, Any
 fromschemas.auth import UserLogin, TokenResponse
 fromschemas.user import UserCreate, UserResponse
 fromservices import auth_service, user_service
-fromutils.auth import get_current_user, create_access_token
-fromutils.serializer import serialize_doc
-fromutils.exceptions import (
+from utils.auth import get_current_user, create_access_token
+from utils.serializer import serialize_doc
+from utils.exceptions import (
     DuplicateUsernameException,
     DuplicateEmailException,
     InvalidCredentialsException,

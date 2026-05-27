@@ -2,8 +2,8 @@ from datetime import datetime
 from typing import List
 
 fromdatabase import get_db
-fromutils.logger import logger
-fromutils.exceptions import DatabaseOperationError
+from utils.logger import logger
+from utils.exceptions import DatabaseOperationError
 
 def format_date(dt: datetime) -> str:
     """Format UTC datetime into '%b %d' with no leading zero on day."""

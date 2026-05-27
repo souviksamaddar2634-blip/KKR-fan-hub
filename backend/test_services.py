@@ -121,10 +121,10 @@ fromschemas.admin import (
     LegendCreate, LegendUpdate
 )
 fromservices import cheers_service, poll_service, user_service, auth_service, news_service, matches_service, admin_service
-fromutils.security import verify_password, get_password_hash
-fromutils.auth import create_access_token, verify_token, get_current_user
-fromutils.permissions import require_admin, require_roles
-fromutils.exceptions import (
+from utils.security import verify_password, get_password_hash
+from utils.auth import create_access_token, verify_token, get_current_user
+from utils.permissions import require_admin, require_roles
+from utils.exceptions import (
     DuplicateEmailException,
     DuplicateUsernameException,
     InvalidCredentialsException,
@@ -331,7 +331,7 @@ def run_tests():
     # === WEBSOCKET SERVICE & MANAGER ===
     print("\n=== TESTING WEBSOCKET SERVICE & MANAGER ===")
     fromservices.websocket_service import format_ws_event, serialize_ws_error
-    fromutils.websocket_manager import ConnectionManager
+    from utils.websocket_manager import ConnectionManager
     
     # Test formatting services
     formatted = format_ws_event("cheer_update", [{"name": "Fan", "msg": "Go KKR"}])

@@ -9,9 +9,9 @@ fromschemas.admin import (
     QuizCreate, QuizUpdate,
     LegendCreate, LegendUpdate
 )
-fromutils.serializer import serialize_doc
-fromutils.logger import logger
-fromutils.exceptions import DatabaseOperationError, raise_bad_request_error
+from utils.serializer import serialize_doc
+from utils.logger import logger
+from utils.exceptions import DatabaseOperationError, raise_bad_request_error
 
 # --- PLAYERS CRUD SERVICES ---
 

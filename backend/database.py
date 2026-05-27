@@ -4,8 +4,8 @@ from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure, PyMongoError
 from dotenv import load_dotenv
 
-fromutils.logger import logger
-fromutils.exceptions import DatabaseConnectionError
+from utils.logger import logger
+from utils.exceptions import DatabaseConnectionError
 
 # Load env variables
 load_dotenv()
@@ -62,7 +62,7 @@ class MongoDBManager:
         if self.db is None:
             return
             
-        fromutils.helpers import read_json
+        from utils.helpers import read_json
         
         collections_to_seed = {
             "players": "players.json",

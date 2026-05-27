@@ -6,8 +6,8 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from dotenv import load_dotenv
 
-fromutils.exceptions import raise_unauthorized_access, raise_token_expired
-fromutils.logger import logger
+from utils.exceptions import raise_unauthorized_access, raise_token_expired
+from utils.logger import logger
 
 load_dotenv()
 

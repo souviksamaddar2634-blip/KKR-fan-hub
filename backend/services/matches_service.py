@@ -4,9 +4,9 @@ from typing import Any, Dict, List, Optional
 
 fromdatabase import get_db
 fromschemas.matches import MatchCreate, MatchUpdate
-fromutils.serializer import serialize_doc
-fromutils.logger import logger
-fromutils.exceptions import DatabaseOperationError, raise_bad_request_error
+from utils.serializer import serialize_doc
+from utils.logger import logger
+from utils.exceptions import DatabaseOperationError, raise_bad_request_error
 
 def get_matches(
     skip: int = 0,

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from typing import Any, Dict
 
-fromutils.permissions import require_admin
+from utils.permissions import require_admin
 # Schemas
 fromschemas.news import NewsCreate, NewsUpdate, NewsResponse
 fromschemas.matches import MatchCreate, MatchUpdate, MatchResponse

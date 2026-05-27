@@ -3,7 +3,7 @@ from typing import List
 
 fromschemas.cheers import CheerCreate, CheerResponse
 fromservices import cheers_service
-fromutils.websocket_manager import manager
+from utils.websocket_manager import manager
 fromservices.websocket_service import format_ws_event
 
 router = APIRouter()

@@ -3,10 +3,10 @@ from typing import Any, Dict
 
 fromschemas.auth import UserLogin
 fromservices import user_service
-fromutils.security import verify_password
-fromutils.auth import create_access_token
-fromutils.exceptions import InvalidCredentialsException
-fromutils.logger import logger
+from utils.security import verify_password
+from utils.auth import create_access_token
+from utils.exceptions import InvalidCredentialsException
+from utils.logger import logger
 
 def authenticate_user(payload: UserLogin) -> Dict[str, Any]:
     """

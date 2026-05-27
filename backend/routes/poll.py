@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 fromschemas.poll import PollData, PollVote
 fromservices import poll_service
-fromutils.websocket_manager import manager
+from utils.websocket_manager import manager
 fromservices.websocket_service import format_ws_event
 
 router = APIRouter()

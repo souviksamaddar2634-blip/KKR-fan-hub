@@ -1,6 +1,6 @@
 from typing import Any, Dict
-fromutils.auth import verify_token
-fromutils.logger import logger
+from utils.auth import verify_token
+from utils.logger import logger
 
 def format_ws_event(event: str, data: Any) -> Dict[str, Any]:
     """Wraps payload data into a structured WebSocket event envelope."""

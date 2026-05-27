@@ -1,7 +1,7 @@
 fromdatabase import get_db
-fromutils.helpers import read_json
-fromutils.logger import logger
-fromutils.exceptions import DatabaseOperationError, raise_bad_request_error
+from utils.helpers import read_json
+from utils.logger import logger
+from utils.exceptions import DatabaseOperationError, raise_bad_request_error
 
 POLL_ID = "mvp_poll"
 
