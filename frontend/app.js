@@ -5,19 +5,23 @@
 ============================================================ */
 
 // Environment Detection & Configuration
-const ishttps://kkr-fan-hub.onrender.com = window.location.hostname === 'https://kkr-fan-hub.onrender.com' || window.location.hostname === 'kkr-fan-hub.onrender.com';
-const currentEnv = ishttps://kkr-fan-hub.onrender.com ? 'development' : 'production';
+const isLocalhost =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1";
+
+const currentEnv = isLocalhost ? "development" : "production";
 
 const ENV = {
   development: {
-    FRONTEND_URL: 'http://https://kkr-fan-hub.onrender.com:3000',
-    API_BASE_URL: 'http://https://kkr-fan-hub.onrender.com:5000/api',
-    WS_BASE_URL: 'ws://https://kkr-fan-hub.onrender.com:5000'
+    FRONTEND_URL: "http://localhost:3000",
+    API_BASE_URL: "http://localhost:5000/api",
+    WS_BASE_URL: "ws://localhost:5000"
   },
+
   production: {
     FRONTEND_URL: window.location.origin,
-    API_BASE_URL: window.location.origin + '/api',
-    WS_BASE_URL: (window.location.protocol === 'https:' ? 'wss://' : 'ws://') + window.location.host
+    API_BASE_URL: "https://kkr-fan-hub.onrender.com/api",
+    WS_BASE_URL: "wss://kkr-fan-hub.onrender.com"
   }
 };
 
