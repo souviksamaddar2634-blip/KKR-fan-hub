@@ -414,7 +414,7 @@ def run_tests():
     backend.database.db_manager.db = mock_db
     backend.database.db_manager.client = MockClient()
     
-    frommain import app
+    from main import app
     client = TestClient(app)
     
     # Test GET /
