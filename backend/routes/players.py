@@ -1,10 +1,10 @@
 from fastapi import APIRouter
 from typing import List, Dict, Optional
 
-from backend.utils.helpers import read_json
-from backend.schemas.admin import PlayerResponse
-from backend.schemas.players import StatEntry
-from backend.services import admin_service
+fromutils.helpers import read_json
+fromschemas.admin import PlayerResponse
+fromschemas.players import StatEntry
+fromservices import admin_service
 
 router = APIRouter()
 

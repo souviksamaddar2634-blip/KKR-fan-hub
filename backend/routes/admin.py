@@ -1,17 +1,17 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from typing import Any, Dict
 
-from backend.utils.permissions import require_admin
+fromutils.permissions import require_admin
 # Schemas
-from backend.schemas.news import NewsCreate, NewsUpdate, NewsResponse
-from backend.schemas.matches import MatchCreate, MatchUpdate, MatchResponse
-from backend.schemas.admin import (
+fromschemas.news import NewsCreate, NewsUpdate, NewsResponse
+fromschemas.matches import MatchCreate, MatchUpdate, MatchResponse
+fromschemas.admin import (
     PlayerCreate, PlayerUpdate, PlayerResponse,
     QuizCreate, QuizUpdate, QuizResponse,
     LegendCreate, LegendUpdate, LegendResponse
 )
 # Services
-from backend.services import news_service, matches_service, admin_service
+fromservices import news_service, matches_service, admin_service
 
 router = APIRouter()
 

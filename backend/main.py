@@ -5,10 +5,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 
-from backend.database import init_db, close_db, db_manager
-from backend.routes import players, matches, news, quiz, legends, seasons, cheers, poll, auth, admin, websocket
-from backend.utils.websocket_manager import manager
-from backend.utils.logger import logger
+from database import init_db, close_db, db_manager
+from routes import players, matches, news, quiz, legends, seasons, cheers, poll, auth, admin, websocket
+from utils.websocket_manager import manager
+from utils.logger import logger
 
 # Retrieve allowed CORS origins dynamically from env variables
 allowed_origins_str = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")

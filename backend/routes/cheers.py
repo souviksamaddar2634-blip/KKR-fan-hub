@@ -1,10 +1,10 @@
 from fastapi import APIRouter
 from typing import List
 
-from backend.schemas.cheers import CheerCreate, CheerResponse
-from backend.services import cheers_service
-from backend.utils.websocket_manager import manager
-from backend.services.websocket_service import format_ws_event
+fromschemas.cheers import CheerCreate, CheerResponse
+fromservices import cheers_service
+fromutils.websocket_manager import manager
+fromservices.websocket_service import format_ws_event
 
 router = APIRouter()
 

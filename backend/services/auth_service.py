@@ -1,12 +1,12 @@
 import time
 from typing import Any, Dict
 
-from backend.schemas.auth import UserLogin
-from backend.services import user_service
-from backend.utils.security import verify_password
-from backend.utils.auth import create_access_token
-from backend.utils.exceptions import InvalidCredentialsException
-from backend.utils.logger import logger
+fromschemas.auth import UserLogin
+fromservices import user_service
+fromutils.security import verify_password
+fromutils.auth import create_access_token
+fromutils.exceptions import InvalidCredentialsException
+fromutils.logger import logger
 
 def authenticate_user(payload: UserLogin) -> Dict[str, Any]:
     """

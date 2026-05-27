@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from typing import List, Optional
 
-from backend.schemas.admin import LegendResponse
-from backend.services import admin_service
+fromschemas.admin import LegendResponse
+fromservices import admin_service
 
 router = APIRouter()
 

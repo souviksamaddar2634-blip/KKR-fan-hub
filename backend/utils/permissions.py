@@ -1,8 +1,8 @@
 from fastapi import Depends, HTTPException, status
 from typing import Any, Dict, List
 
-from backend.utils.auth import get_current_user
-from backend.utils.logger import logger
+fromutils.auth import get_current_user
+fromutils.logger import logger
 
 def get_current_active_user(current_user: Dict[str, Any] = Depends(get_current_user)) -> Dict[str, Any]:
     """Dependency to verify that the authenticated user is currently active."""

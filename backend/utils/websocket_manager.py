@@ -3,7 +3,7 @@ import json
 from fastapi import WebSocket
 from typing import Dict, Set, Any
 
-from backend.utils.logger import logger
+fromutils.logger import logger
 
 # Reusable WebSocket Configuration Constants
 MAX_CONNECTIONS = 500

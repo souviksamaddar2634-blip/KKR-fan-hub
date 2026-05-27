@@ -3,15 +3,15 @@ from bson import ObjectId
 from typing import Any, Dict, List, Optional
 from pymongo import ReturnDocument
 
-from backend.database import get_db
-from backend.schemas.admin import (
+fromdatabase import get_db
+fromschemas.admin import (
     PlayerCreate, PlayerUpdate,
     QuizCreate, QuizUpdate,
     LegendCreate, LegendUpdate
 )
-from backend.utils.serializer import serialize_doc
-from backend.utils.logger import logger
-from backend.utils.exceptions import DatabaseOperationError, raise_bad_request_error
+fromutils.serializer import serialize_doc
+fromutils.logger import logger
+fromutils.exceptions import DatabaseOperationError, raise_bad_request_error
 
 # --- PLAYERS CRUD SERVICES ---
 

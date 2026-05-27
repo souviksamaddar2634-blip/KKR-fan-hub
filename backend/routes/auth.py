@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, status
 from typing import Dict, Any
 
-from backend.schemas.auth import UserLogin, TokenResponse
-from backend.schemas.user import UserCreate, UserResponse
-from backend.services import auth_service, user_service
-from backend.utils.auth import get_current_user, create_access_token
-from backend.utils.serializer import serialize_doc
-from backend.utils.exceptions import (
+fromschemas.auth import UserLogin, TokenResponse
+fromschemas.user import UserCreate, UserResponse
+fromservices import auth_service, user_service
+fromutils.auth import get_current_user, create_access_token
+fromutils.serializer import serialize_doc
+fromutils.exceptions import (
     DuplicateUsernameException,
     DuplicateEmailException,
     InvalidCredentialsException,

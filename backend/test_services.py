@@ -111,20 +111,20 @@ import backend.database
 backend.database.get_db = lambda: mock_db
 
 # Import security, schemas, services, and permissions
-from backend.schemas.user import UserCreate
-from backend.schemas.auth import UserLogin
-from backend.schemas.news import NewsCreate, NewsUpdate
-from backend.schemas.matches import MatchCreate, MatchUpdate
-from backend.schemas.admin import (
+fromschemas.user import UserCreate
+fromschemas.auth import UserLogin
+fromschemas.news import NewsCreate, NewsUpdate
+fromschemas.matches import MatchCreate, MatchUpdate
+fromschemas.admin import (
     PlayerCreate, PlayerUpdate,
     QuizCreate, QuizUpdate,
     LegendCreate, LegendUpdate
 )
-from backend.services import cheers_service, poll_service, user_service, auth_service, news_service, matches_service, admin_service
-from backend.utils.security import verify_password, get_password_hash
-from backend.utils.auth import create_access_token, verify_token, get_current_user
-from backend.utils.permissions import require_admin, require_roles
-from backend.utils.exceptions import (
+fromservices import cheers_service, poll_service, user_service, auth_service, news_service, matches_service, admin_service
+fromutils.security import verify_password, get_password_hash
+fromutils.auth import create_access_token, verify_token, get_current_user
+fromutils.permissions import require_admin, require_roles
+fromutils.exceptions import (
     DuplicateEmailException,
     DuplicateUsernameException,
     InvalidCredentialsException,
@@ -330,8 +330,8 @@ def run_tests():
 
     # === WEBSOCKET SERVICE & MANAGER ===
     print("\n=== TESTING WEBSOCKET SERVICE & MANAGER ===")
-    from backend.services.websocket_service import format_ws_event, serialize_ws_error
-    from backend.utils.websocket_manager import ConnectionManager
+    fromservices.websocket_service import format_ws_event, serialize_ws_error
+    fromutils.websocket_manager import ConnectionManager
     
     # Test formatting services
     formatted = format_ws_event("cheer_update", [{"name": "Fan", "msg": "Go KKR"}])
@@ -414,7 +414,7 @@ def run_tests():
     backend.database.db_manager.db = mock_db
     backend.database.db_manager.client = MockClient()
     
-    from backend.main import app
+    frommain import app
     client = TestClient(app)
     
     # Test GET /

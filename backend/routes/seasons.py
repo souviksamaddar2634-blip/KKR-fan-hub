@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from typing import List
 
-from backend.utils.helpers import read_json
-from backend.schemas.seasons import SeasonPerformance
+fromutils.helpers import read_json
+fromschemas.seasons import SeasonPerformance
 
 router = APIRouter()
 

@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from typing import List, Optional
 
-from backend.schemas.admin import QuizResponse
-from backend.services import admin_service
+fromschemas.admin import QuizResponse
+fromservices import admin_service
 
 router = APIRouter()
 

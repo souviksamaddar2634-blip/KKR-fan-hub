@@ -2,11 +2,11 @@ from datetime import datetime
 from bson import ObjectId
 from typing import Any, Dict, Optional
 
-from backend.database import get_db
-from backend.schemas.user import UserCreate
-from backend.utils.security import get_password_hash
-from backend.utils.exceptions import DuplicateEmailException, DuplicateUsernameException, DatabaseOperationError
-from backend.utils.logger import logger
+fromdatabase import get_db
+fromschemas.user import UserCreate
+fromutils.security import get_password_hash
+fromutils.exceptions import DuplicateEmailException, DuplicateUsernameException, DatabaseOperationError
+fromutils.logger import logger
 
 def get_user_by_id(user_id: str) -> Optional[Dict[str, Any]]:
     """Retrieve a user from MongoDB by their ObjectId or raw string ID (fallback)."""

@@ -1,7 +1,7 @@
-from backend.database import get_db
-from backend.utils.helpers import read_json
-from backend.utils.logger import logger
-from backend.utils.exceptions import DatabaseOperationError, raise_bad_request_error
+fromdatabase import get_db
+fromutils.helpers import read_json
+fromutils.logger import logger
+fromutils.exceptions import DatabaseOperationError, raise_bad_request_error
 
 POLL_ID = "mvp_poll"
 
