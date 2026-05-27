@@ -1,6 +1,19 @@
 # KKR Fan Hub 🏏
 
-Welcome to the **KKR Fan Hub**, a high-performance, production-ready full-stack web application designed for fans of the **Kolkata Knight Riders (KKR)**. 
+Welcome to the **KKR Fan Hub**, a high-performance, production-ready full-stack web application designed for fans of the **Kolkata Knight Riders (KKR)**.
+
+## 🚀 Live Deployment
+
+### 🌐 Frontend (Vercel)
+https://kkr-fan-hub.vercel.app
+
+### ⚙ Backend API (Render)
+https://kkr-fan-hub.onrender.com
+
+### ❤️ Health Check
+https://kkr-fan-hub.onrender.com/health
+
+---
 
 This repository implements a premium user interface with interactive elements, real-time WebSocket messaging rooms, secure JWT authentication, and a complete administrative CRUD dashboard backend connected to MongoDB Atlas.
 
@@ -39,41 +52,58 @@ graph TD
 - **Real-Time Interactive Fan Zone**:
   - **Cheers Wall**: Post cheers with instantaneous update propagation via `/ws/cheers`.
   - **MVP Poll**: Cast votes dynamically and view real-time update graphs via `/ws/poll`.
-- **Administrative Portal**: Secure CRUD panel allowing admins (`role == "admin"`) to manage match schedules, news articles, squad lists, trivia quizzes, and legendary profiles.
-- **Cryptographic Security**: Secure authentication flows utilizing standard JWT tokens, password hashing with `bcrypt`, OAuth2 password bearer schemes, and strict role-based permission dependencies.
+
+- **Administrative Portal**:
+  - Secure CRUD panel allowing admins (`role == "admin"`) to manage:
+    - match schedules
+    - news articles
+    - squad lists
+    - trivia quizzes
+    - legendary profiles
+
+- **Cryptographic Security**:
+  - Secure JWT authentication
+  - Password hashing using bcrypt
+  - OAuth2 bearer token flow
+  - Role-based authorization dependencies
+
 - **Performance Optimizations**:
-  - **GZip Compression**: Minimizes network payloads larger than 1KB.
-  - **Dynamic Response Caching**: Native middleware appending `Cache-Control` browser caching headers on static read-only endpoints.
-  - **Lazy Image Loading**: Injected `loading="lazy"` tags on dyn-rendered rosters, modals, and avatars.
-  - **Shimmer Skeletons**: CSS-animated loading states to prevent layout shifts.
+  - GZip compression
+  - Dynamic browser caching
+  - Lazy image loading
+  - Skeleton loading animations
+  - Responsive mobile layouts
 
 ---
 
 ## 📂 Codebase Directory Structure
 
-```
+```txt
 KKR fan web/
 ├── backend/
 │   ├── routes/
-│   │   ├── admin.py          # Admin CRUD APIs (POST/PUT/DELETE)
-│   │   ├── auth.py           # Authenticate, Signup, Profile (/me)
-│   │   ├── websocket.py      # Real-time WebSocket connection endpoints
-│   │   └── ...               # Public GET endpoint routers (matches, players, etc.)
-│   ├── services/             # Database access and business logic services
+│   │   ├── admin.py
+│   │   ├── auth.py
+│   │   ├── websocket.py
+│   │   └── ...
+│   ├── services/
 │   ├── utils/
-│   │   ├── logger.py         # Dynamic stderr logger level parser
-│   │   ├── security.py       # Password encryption helpers
-│   │   └── websocket_manager.py # WebSocket room tracking & safelimit (500 connections)
-│   ├── database.py           # Atlas connections, schema seeding, collection indexers
-│   ├── main.py               # App entrypoint, Middlewares (Gzip, TrustedHost, CORS)
-│   ├── Dockerfile            # Container definition respecting Render PORT overrides
-│   └── requirements.txt      # Python deployment dependencies list
+│   │   ├── logger.py
+│   │   ├── security.py
+│   │   └── websocket_manager.py
+│   ├── database.py
+│   ├── main.py
+│   ├── Dockerfile
+│   └── requirements.txt
+│
 ├── frontend/
-│   ├── app.js                # Core JS logic: Websockets client, skeleton triggers, auth, API calls
-│   ├── style.css             # Styling layout, shimmering keyframes, glassmorphism UI variables
-│   └── index.html            # Markup structural bones with modern layout components
-├── vercel.json               # Vercel deployment and routing rules mapping
-└── render.yaml               # Render Infrastructure-as-code Blueprint
+│   ├── app.js
+│   ├── style.css
+│   └── index.html
+│
+├── vercel.json
+├── render.yaml
+└── README.md
 ```
 
 ---
@@ -84,88 +114,169 @@ KKR fan web/
 
 | Method | Endpoint | Access | Description |
 |---|---|---|---|
-| `GET` | `/health` | Public | Status check verifying DB connectivity status |
-| `POST` | `/api/auth/signup` | Public | Normalizes credentials, hashes password, registers new user |
-| `POST` | `/api/auth/token` | Public | OAuth2 token endpoint returning JWT bearer token |
-| `GET` | `/api/auth/verify` | Public | Validates access token validity status |
-| `GET` | `/api/players` | Public | Retrieves roster list (Cached) |
-| `GET` | `/api/matches` | Public | Retrieves 2026 fixture calendar (Cached) |
-| `GET` | `/api/news` | Public | Queries news updates with search filter (Cached) |
-| `POST` | `/api/cheers` | Public | Submits a cheer message & triggers WebSocket broadcasts |
-| `POST` | `/api/poll` | Public | Casts an MVP vote & triggers WebSocket broadcasts |
-| `POST` | `/api/admin/players` | Admin | Adds a new player profile |
-| `PUT` | `/api/admin/players/{id}` | Admin | Modifies an existing player profile |
-| `DELETE` | `/api/admin/players/{id}` | Admin | Removes a player profile |
+| GET | `/health` | Public | Verifies API and DB connectivity |
+| POST | `/api/auth/signup` | Public | Registers a new user |
+| POST | `/api/auth/token` | Public | Returns JWT access token |
+| GET | `/api/auth/verify` | Public | Validates token status |
+| GET | `/api/players` | Public | Retrieves roster list |
+| GET | `/api/matches` | Public | Retrieves match schedule |
+| GET | `/api/news` | Public | Retrieves news updates |
+| POST | `/api/cheers` | Public | Adds fan cheer |
+| POST | `/api/poll` | Public | Casts MVP vote |
+| POST | `/api/admin/players` | Admin | Create player |
+| PUT | `/api/admin/players/{id}` | Admin | Update player |
+| DELETE | `/api/admin/players/{id}` | Admin | Delete player |
 
-### WebSocket Rooms & Payloads
+---
 
-1. **Cheers Wall Room (`/ws/cheers`)**:
-   - Connection Handshake: `ws://https://kkr-fan-hub.onrender.com:5000/ws/cheers`
-   - Broadcast Payload:
-     ```json
-     {
-       "event": "cheer_update",
-       "data": [
-         { "name": "Fan A", "msg": "Go KKR!", "time": "May 27" },
-         ...
-       ]
-     }
-     ```
-2. **MVP Poll Room (`/ws/poll`)**:
-   - Connection Handshake: `ws://https://kkr-fan-hub.onrender.com:5000/ws/poll`
-   - Broadcast Payload:
-     ```json
-     {
-       "event": "poll_update",
-       "data": {
-         "votes": [45, 29, 18, 12],
-         "labels": ["Sunil Narine", "Rinku Singh", "Varun Chakravarthy", "Quinton de Kock"]
-       }
-     }
-     ```
+## 🔌 WebSocket Rooms
+
+### Cheers Room
+Endpoint:
+```txt
+wss://kkr-fan-hub.onrender.com/ws/cheers
+```
+
+Payload:
+```json
+{
+  "event": "cheer_update",
+  "data": [
+    {
+      "name": "Fan A",
+      "msg": "Go KKR!",
+      "time": "May 27"
+    }
+  ]
+}
+```
+
+### Poll Room
+Endpoint:
+```txt
+wss://kkr-fan-hub.onrender.com/ws/poll
+```
+
+Payload:
+```json
+{
+  "event": "poll_update",
+  "data": {
+    "votes": [45, 29, 18, 12],
+    "labels": [
+      "Sunil Narine",
+      "Rinku Singh",
+      "Varun Chakravarthy",
+      "Quinton de Kock"
+    ]
+  }
+}
+```
 
 ---
 
 ## 🚀 Deployment Instructions
 
-### 1. MongoDB Atlas Configuration
-- Deploy a free M0 tier cluster.
-- Create a database user and white-list IP `0.0.0.0/0` (Allow Access from Anywhere).
-- Copy your connection URI string.
+### 1. MongoDB Atlas Setup
+- Create a free M0 cluster
+- Add database user
+- Allow IP access:
+  ```txt
+  0.0.0.0/0
+  ```
+- Copy MongoDB URI
 
-### 2. Render Backend Deployment
-Render deploys via the included `render.yaml` blueprint:
-1. Create a **Blueprint** service on Render.
-2. Link your Git repository.
-3. Render will parse the `render.yaml` and configure the container environments.
-4. Input your `MONGO_URI` when prompted by the dashboard.
-
-### 3. Vercel Frontend Deployment
-1. Import your project repository into Vercel.
-2. Ensure the root directory is set to the project root (where `vercel.json` is located).
-3. Deploy! Vercel's rewrite rules in `vercel.json` automatically map `/api` routes to your backend.
-
----
-
-## 🏃 Local Development Quickstart
-
-1. Install requirements:
-   ```bash
-   pip install -r requirements.txt
-   ```
-2. Set up local development variables in `backend/.env`:
+### 2. Backend Deployment (Render)
+1. Create Render Blueprint service
+2. Connect GitHub repository
+3. Configure environment variables:
    ```env
-   MONGO_URI=mongodb+srv://...
-   DATABASE_NAME=kkr_fan_hub
-   SECRET_KEY=b94d92349b06d8057422199d034bbc87c7397b87457dc46040ec19945be8d278
+   MONGO_URI=
+   DATABASE_NAME=
+   SECRET_KEY=
    ALGORITHM=HS256
    ACCESS_TOKEN_EXPIRE_MINUTES=60
    ```
-3. Run the development runner:
-   ```bash
-   python run_servers.py
-   ```
-4. Verify backend functionality:
-   ```bash
-   python backend/test_services.py
-   ```
+4. Deploy backend
+
+### 3. Frontend Deployment (Vercel)
+1. Import GitHub repository
+2. Set frontend root directory
+3. Deploy frontend
+4. Configure production rewrites
+
+---
+
+## 🏃 Local Development Setup
+
+### Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Configure Environment Variables
+Create:
+```txt
+backend/.env
+```
+
+Add:
+```env
+MONGO_URI=mongodb+srv://...
+DATABASE_NAME=kkr_fan_hub
+SECRET_KEY=your_secret_key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=60
+```
+
+### Run Development Servers
+```bash
+python run_servers.py
+```
+
+### Run Tests
+```bash
+python backend/test_services.py
+```
+
+---
+
+## ✨ Highlights
+
+- Production-ready FastAPI backend
+- MongoDB Atlas cloud database integration
+- JWT Authentication System
+- Real-time WebSocket architecture
+- Responsive UI design
+- Vercel + Render cloud deployment
+- Docker-ready infrastructure
+- Offline fallback architecture
+- Secure admin CRUD system
+- Modular scalable backend architecture
+
+---
+
+## 📸 Screenshots
+
+_Add screenshots here later:_
+- Hero Section
+- Squad Cards
+- Legends Section
+- Fan Zone
+- Real-Time Polls
+- Mobile Responsive View
+- Swagger/OpenAPI Docs
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Souvik Samaddar**
+
+Passionate about:
+- Full Stack Development
+- Backend Systems
+- Real-Time Architectures
+- Sports Fan Platforms
+- Cloud Deployment
+   
