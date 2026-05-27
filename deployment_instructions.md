@@ -98,7 +98,7 @@ Render will automatically deploy the backend using Infrastructure-as-Code via th
 ## 🏃 Startup Commands
 
 ### Development
-Start both servers locally (CORS automatically maps `localhost` ports):
+Start both servers locally (CORS automatically maps `https://kkr-fan-hub.onrender.com` ports):
 ```bash
 python run_servers.py
 ```

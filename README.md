@@ -100,7 +100,7 @@ KKR fan web/
 ### WebSocket Rooms & Payloads
 
 1. **Cheers Wall Room (`/ws/cheers`)**:
-   - Connection Handshake: `ws://localhost:5000/ws/cheers`
+   - Connection Handshake: `ws://https://kkr-fan-hub.onrender.com:5000/ws/cheers`
    - Broadcast Payload:
      ```json
      {
@@ -112,7 +112,7 @@ KKR fan web/
      }
      ```
 2. **MVP Poll Room (`/ws/poll`)**:
-   - Connection Handshake: `ws://localhost:5000/ws/poll`
+   - Connection Handshake: `ws://https://kkr-fan-hub.onrender.com:5000/ws/poll`
    - Broadcast Payload:
      ```json
      {

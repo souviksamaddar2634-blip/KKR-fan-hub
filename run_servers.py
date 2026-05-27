@@ -10,8 +10,8 @@ def main():
     print("=" * 60)
     print("KKR FAN HUB - MULTI-SERVER RUNNER")
     print("=" * 60)
-    print("Starting KKR Backend Server on http://localhost:5000 ...")
-    print("Starting KKR Frontend Server on http://localhost:3000 ...")
+    print("Starting KKR Backend Server on http://https://kkr-fan-hub.onrender.com:5000 ...")
+    print("Starting KKR Frontend Server on http://https://kkr-fan-hub.onrender.com:3000 ...")
     print("=" * 60)
 
     # Start backend server (FastAPI with Uvicorn)
@@ -27,8 +27,8 @@ def main():
     )
 
     print("Both servers are running!")
-    print("- Frontend: http://localhost:3000")
-    print("- Backend API: http://localhost:5000/api")
+    print("- Frontend: http://https://kkr-fan-hub.onrender.com:3000")
+    print("- Backend API: http://https://kkr-fan-hub.onrender.com:5000/api")
     print("Press Ctrl+C to terminate both servers.")
     print("=" * 60)
 

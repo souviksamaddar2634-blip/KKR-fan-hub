@@ -1,18 +1,18 @@
 /* ============================================================
    KKR 2026 SEASON - FRONTEND CLIENT
-   Communicates with backend API at http://localhost:5000/api
+   Communicates with backend API at http://https://kkr-fan-hub.onrender.com:5000/api
    Resiliently falls back to local data if backend is offline.
 ============================================================ */
 
 // Environment Detection & Configuration
-const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-const currentEnv = isLocalhost ? 'development' : 'production';
+const ishttps://kkr-fan-hub.onrender.com = window.location.hostname === 'https://kkr-fan-hub.onrender.com' || window.location.hostname === '127.0.0.1';
+const currentEnv = ishttps://kkr-fan-hub.onrender.com ? 'development' : 'production';
 
 const ENV = {
   development: {
-    FRONTEND_URL: 'http://localhost:3000',
-    API_BASE_URL: 'http://localhost:5000/api',
-    WS_BASE_URL: 'ws://localhost:5000'
+    FRONTEND_URL: 'http://https://kkr-fan-hub.onrender.com:3000',
+    API_BASE_URL: 'http://https://kkr-fan-hub.onrender.com:5000/api',
+    WS_BASE_URL: 'ws://https://kkr-fan-hub.onrender.com:5000'
   },
   production: {
     FRONTEND_URL: window.location.origin,
