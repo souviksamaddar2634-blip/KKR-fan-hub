@@ -2,8 +2,8 @@ from datetime import datetime
 from bson import ObjectId
 from typing import Any, Dict, Optional
 
-fromdatabase import get_db
-fromschemas.user import UserCreate
+from database import get_db
+from schemas.user import UserCreate
 from utils.security import get_password_hash
 from utils.exceptions import DuplicateEmailException, DuplicateUsernameException, DatabaseOperationError
 from utils.logger import logger

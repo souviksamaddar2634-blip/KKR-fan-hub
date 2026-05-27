@@ -66,7 +66,7 @@ def get_current_user(token: Optional[str] = Depends(oauth2_scheme)) -> Dict[str,
     user_id = payload.get("sub")
     
     # Import user_service locally to prevent circular package imports
-    fromservices import user_service
+    from services import user_service
     user = user_service.get_user_by_id(user_id)
     if not user:
         logger.warning(f"Authentication failure: User ID '{user_id}' does not exist in database.")

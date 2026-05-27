@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List
 
-fromdatabase import get_db
+from database import get_db
 from utils.logger import logger
 from utils.exceptions import DatabaseOperationError
 

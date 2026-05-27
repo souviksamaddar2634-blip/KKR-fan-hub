@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import List, Optional
-fromschemas.players import StatEntry
+from schemas.players import StatEntry
 
 # Player CRUD Validation Schemas
 class PlayerCreate(BaseModel):

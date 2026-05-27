@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-fromschemas.user import UserResponse
+from schemas.user import UserResponse
 
 class UserLogin(BaseModel):
     username: str  # Can accept username or email address

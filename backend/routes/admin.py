@@ -3,15 +3,15 @@ from typing import Any, Dict
 
 from utils.permissions import require_admin
 # Schemas
-fromschemas.news import NewsCreate, NewsUpdate, NewsResponse
-fromschemas.matches import MatchCreate, MatchUpdate, MatchResponse
-fromschemas.admin import (
+from schemas.news import NewsCreate, NewsUpdate, NewsResponse
+from schemas.matches import MatchCreate, MatchUpdate, MatchResponse
+from schemas.admin import (
     PlayerCreate, PlayerUpdate, PlayerResponse,
     QuizCreate, QuizUpdate, QuizResponse,
     LegendCreate, LegendUpdate, LegendResponse
 )
 # Services
-fromservices import news_service, matches_service, admin_service
+from services import news_service, matches_service, admin_service
 
 router = APIRouter()
 

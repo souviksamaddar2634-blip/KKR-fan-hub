@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from typing import List
 
 from utils.helpers import read_json
-fromschemas.seasons import SeasonPerformance
+from schemas.seasons import SeasonPerformance
 
 router = APIRouter()
 

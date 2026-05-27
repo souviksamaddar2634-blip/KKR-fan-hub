@@ -111,16 +111,16 @@ import backend.database
 backend.database.get_db = lambda: mock_db
 
 # Import security, schemas, services, and permissions
-fromschemas.user import UserCreate
-fromschemas.auth import UserLogin
-fromschemas.news import NewsCreate, NewsUpdate
-fromschemas.matches import MatchCreate, MatchUpdate
-fromschemas.admin import (
+from schemas.user import UserCreate
+from schemas.auth import UserLogin
+from schemas.news import NewsCreate, NewsUpdate
+from schemas.matches import MatchCreate, MatchUpdate
+from schemas.admin import (
     PlayerCreate, PlayerUpdate,
     QuizCreate, QuizUpdate,
     LegendCreate, LegendUpdate
 )
-fromservices import cheers_service, poll_service, user_service, auth_service, news_service, matches_service, admin_service
+from services import cheers_service, poll_service, user_service, auth_service, news_service, matches_service, admin_service
 from utils.security import verify_password, get_password_hash
 from utils.auth import create_access_token, verify_token, get_current_user
 from utils.permissions import require_admin, require_roles
@@ -330,7 +330,7 @@ def run_tests():
 
     # === WEBSOCKET SERVICE & MANAGER ===
     print("\n=== TESTING WEBSOCKET SERVICE & MANAGER ===")
-    fromservices.websocket_service import format_ws_event, serialize_ws_error
+    from services.websocket_service import format_ws_event, serialize_ws_error
     from utils.websocket_manager import ConnectionManager
     
     # Test formatting services

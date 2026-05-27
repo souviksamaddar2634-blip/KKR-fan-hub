@@ -4,7 +4,7 @@ from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from typing import Optional
 
 from utils.websocket_manager import manager
-fromservices.websocket_service import authenticate_websocket, serialize_ws_error
+from services.websocket_service import authenticate_websocket, serialize_ws_error
 from utils.logger import logger
 
 router = APIRouter()

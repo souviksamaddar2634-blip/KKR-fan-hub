@@ -2,8 +2,8 @@ from datetime import datetime
 from bson import ObjectId
 from typing import Any, Dict, List, Optional
 
-fromdatabase import get_db
-fromschemas.matches import MatchCreate, MatchUpdate
+from database import get_db
+from schemas.matches import MatchCreate, MatchUpdate
 from utils.serializer import serialize_doc
 from utils.logger import logger
 from utils.exceptions import DatabaseOperationError, raise_bad_request_error

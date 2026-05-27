@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from typing import List, Optional
 
-fromschemas.news import NewsResponse
-fromservices import news_service
+from schemas.news import NewsResponse
+from services import news_service
 
 router = APIRouter()
 

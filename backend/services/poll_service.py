@@ -1,4 +1,4 @@
-fromdatabase import get_db
+from database import get_db
 from utils.helpers import read_json
 from utils.logger import logger
 from utils.exceptions import DatabaseOperationError, raise_bad_request_error

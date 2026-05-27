@@ -1,8 +1,8 @@
 import time
 from typing import Any, Dict
 
-fromschemas.auth import UserLogin
-fromservices import user_service
+from schemas.auth import UserLogin
+from services import user_service
 from utils.security import verify_password
 from utils.auth import create_access_token
 from utils.exceptions import InvalidCredentialsException

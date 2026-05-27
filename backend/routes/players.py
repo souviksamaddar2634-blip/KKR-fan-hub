@@ -2,9 +2,9 @@ from fastapi import APIRouter
 from typing import List, Dict, Optional
 
 from utils.helpers import read_json
-fromschemas.admin import PlayerResponse
-fromschemas.players import StatEntry
-fromservices import admin_service
+from schemas.admin import PlayerResponse
+from schemas.players import StatEntry
+from services import admin_service
 
 router = APIRouter()
 

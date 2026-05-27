@@ -3,8 +3,8 @@ from bson import ObjectId
 from typing import Any, Dict, List, Optional
 from pymongo import ReturnDocument
 
-fromdatabase import get_db
-fromschemas.admin import (
+from database import get_db
+from schemas.admin import (
     PlayerCreate, PlayerUpdate,
     QuizCreate, QuizUpdate,
     LegendCreate, LegendUpdate

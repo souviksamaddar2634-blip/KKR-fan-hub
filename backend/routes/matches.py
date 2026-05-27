@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 from typing import List, Optional
 
-fromschemas.matches import MatchResponse
-fromservices import matches_service
+from schemas.matches import MatchResponse
+from services import matches_service
 
 router = APIRouter()
 
