@@ -110,6 +110,12 @@ mock_db = MockDB()
 import backend.database
 backend.database.get_db = lambda: mock_db
 
+try:
+    import database
+    database.get_db = lambda: mock_db
+except ImportError:
+    pass
+
 # Import security, schemas, services, and permissions
 from schemas.user import UserCreate
 from schemas.auth import UserLogin
@@ -413,6 +419,12 @@ def run_tests():
         
     backend.database.db_manager.db = mock_db
     backend.database.db_manager.client = MockClient()
+    try:
+        import database
+        database.db_manager.db = mock_db
+        database.db_manager.client = MockClient()
+    except ImportError:
+        pass
     
     from main import app
     client = TestClient(app)
@@ -424,6 +436,8 @@ def run_tests():
     
     # Test GET /health
     resp_health = client.get("/health")
+    if resp_health.status_code != 200:
+        print("HEALTH CHECK FAILED:", resp_health.status_code, resp_health.text)
     assert resp_health.status_code == 200
     assert resp_health.json()["status"] == "healthy"
     assert resp_health.json()["database"] == "connected"

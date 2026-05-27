@@ -38,7 +38,7 @@ function connectPollWebSocket() {
   let pingInterval;
   
   ws.onopen = () => {
-    console.log("Poll WebSocket connection established.");
+    console.log("WebSocket success: Poll WebSocket connection established.");
     pingInterval = setInterval(() => {
       if (ws.readyState === WebSocket.OPEN) {
         ws.send("ping");
@@ -64,13 +64,13 @@ function connectPollWebSocket() {
   };
   
   ws.onclose = () => {
-    console.log("Poll WebSocket closed. Reconnecting in 5 seconds...");
+    console.log("WebSocket failure: Poll WebSocket connection closed/failed. Reconnecting in 5 seconds...");
     clearInterval(pingInterval);
     setTimeout(connectPollWebSocket, 5000);
   };
   
   ws.onerror = (err) => {
-    console.error("Poll WebSocket error: ", err);
+    console.error("WebSocket failure: Poll WebSocket error: ", err);
     ws.close();
   };
 }
@@ -83,7 +83,7 @@ function connectCheersWebSocket(onUpdate) {
   let pingInterval;
   
   ws.onopen = () => {
-    console.log("Cheers WebSocket connection established.");
+    console.log("WebSocket success: Cheers WebSocket connection established.");
     pingInterval = setInterval(() => {
       if (ws.readyState === WebSocket.OPEN) {
         ws.send("ping");
@@ -105,13 +105,13 @@ function connectCheersWebSocket(onUpdate) {
   };
   
   ws.onclose = () => {
-    console.log("Cheers WebSocket closed. Reconnecting in 5 seconds...");
+    console.log("WebSocket failure: Cheers WebSocket connection closed/failed. Reconnecting in 5 seconds...");
     clearInterval(pingInterval);
     setTimeout(() => connectCheersWebSocket(onUpdate), 5000);
   };
   
   ws.onerror = (err) => {
-    console.error("Cheers WebSocket error: ", err);
+    console.error("WebSocket failure: Cheers WebSocket error: ", err);
     ws.close();
   };
 }
@@ -1475,39 +1475,52 @@ async function loadBackendData() {
   // Show skeletons loading indicators
   showSkeletons();
   
-  try {
-    const [resPlayers, resStats, resMatches, resNews, resQuiz, resLegends, resSeasons] = await Promise.all([
-      fetch(`${API_URL}/players`).then(r => r.json()),
-      fetch(`${API_URL}/players/stats`).then(r => r.json()),
-      fetch(`${API_URL}/matches`).then(r => r.json()),
-      fetch(`${API_URL}/news`).then(r => r.json()),
-      fetch(`${API_URL}/quiz`).then(r => r.json()),
-      fetch(`${API_URL}/legends`).then(r => r.json()),
-      fetch(`${API_URL}/seasons`).then(r => r.json())
-    ]);
+  let playersFailed = false;
 
-    players = resPlayers;
-    masterStats = resStats;
-    matches = resMatches;
-    newsArticles = resNews;
-    quizQuestions = resQuiz;
-    legends = resLegends;
-    seasons = resSeasons;
-    console.log("Connected to KKR backend API successfully.");
-    showToast("Loaded real-time server database successfully.", "success");
-  } catch (err) {
-    console.warn("Backend server connection failed. Resiliently falling back to local static client dataset.", err);
-    players = FALLBACK_DATA.players;
-    masterStats = FALLBACK_DATA.masterStats;
-    matches = FALLBACK_DATA.matches;
-    newsArticles = FALLBACK_DATA.newsArticles;
-    quizQuestions = FALLBACK_DATA.quizQuestions;
-    legends = FALLBACK_DATA.legends;
-    seasons = FALLBACK_DATA.seasons;
-    
-    // Trigger offline warnings
+  async function fetchSafe(endpoint, fallbackKey) {
+    try {
+      const res = await fetch(`${API_URL}/${endpoint}`);
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      const data = await res.json();
+      console.log(`API success: Loaded /api/${endpoint} successfully.`);
+      return data;
+    } catch (err) {
+      console.error(`API failure: Failed to load /api/${endpoint}.`, err);
+      if (endpoint === 'players') {
+        playersFailed = true;
+      }
+      return FALLBACK_DATA[fallbackKey];
+    }
+  }
+
+  const [resPlayers, resStats, resMatches, resNews, resQuiz, resLegends, resSeasons] = await Promise.all([
+    fetchSafe('players', 'players'),
+    fetchSafe('players/stats', 'masterStats'),
+    fetchSafe('matches', 'matches'),
+    fetchSafe('news', 'newsArticles'),
+    fetchSafe('quiz', 'quizQuestions'),
+    fetchSafe('legends', 'legends'),
+    fetchSafe('seasons', 'seasons')
+  ]);
+
+  players = resPlayers;
+  masterStats = resStats;
+  matches = resMatches;
+  newsArticles = resNews;
+  quizQuestions = resQuiz;
+  legends = resLegends;
+  seasons = resSeasons;
+
+  if (playersFailed) {
     showOfflineBanner();
     showToast("Server connection offline. Running in static mode.", "warning");
+  } else {
+    // Backend API is online, remove the persistent offline banner if it exists
+    const banner = document.getElementById('offline-banner');
+    if (banner) {
+      banner.remove();
+    }
+    showToast("Loaded real-time server database successfully.", "success");
   }
 
   // Initialize components
